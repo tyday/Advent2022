@@ -41,10 +41,6 @@ public class Day02 {
 
         System.out.println("Part Two: " + secondPartScore);
     }
-
-    private static int score(String left, String right) {
-        return 0;
-    }
 }
 
 class Data{
