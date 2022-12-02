@@ -14,14 +14,11 @@ public class Day01 {
 
         meals.add(new Meal());
 
-//        boolean elfIsCurrent = true;
         while(sc.hasNextLine()){
             String line = sc.nextLine();
-            if ("" == line){
-//                elfIsCurrent = false;
+            if ("".equals(line)){
                 meals.add(new Meal());
             } else {
-//                elfIsCurrent = true;
                 Meal currentMeal = meals.get(meals.size() - 1);
                 currentMeal.addCalories(Integer.parseInt(line));
             }
@@ -36,7 +33,7 @@ public class Day01 {
             calList.add(meal.getCalories());
         }
         System.out.println("Max Calories = " + maxCalories);
-        Collections.sort(calList, Collections.reverseOrder());
+        calList.sort(Collections.reverseOrder());
         int cals = calList.get(0) + calList.get(1) + calList.get(2);
         System.out.println("Top 3 elves: " + cals);
     }
@@ -47,10 +44,6 @@ class Meal implements Comparator<Meal> {
 
     public int getCalories() {
         return calories;
-    }
-
-    public void setCalories(int calories) {
-        this.calories = calories;
     }
 
     public void addCalories(int calories){
