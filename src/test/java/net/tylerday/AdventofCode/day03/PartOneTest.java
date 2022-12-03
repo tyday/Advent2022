@@ -14,7 +14,7 @@ class PartOneTest {
 
     @Test
     public void constructorTest() throws FileNotFoundException {
-        File file = new File("E:\\LocalProgramming\\Advent2022\\src\\test\\java\\net\\tylerday\\AdventofCode\\day03\\test.txt");
+        File file = new File("src/test/java/net/tylerday/AdventofCode/day03/test.txt");
         partOne = new PartOne(file);
 
         List<Rucksack> rucksackList = new ArrayList<>();
@@ -32,9 +32,29 @@ class PartOneTest {
 
     @Test
     void partOneTotal() throws FileNotFoundException {
-        File file = new File("E:\\LocalProgramming\\Advent2022\\src\\test\\java\\net\\tylerday\\AdventofCode\\day03\\test.txt");
+        File file = new File("src/test/java/net/tylerday/AdventofCode/day03/test.txt");
         partOne = new PartOne(file);
 
         assertEquals(157, partOne.partOneTotal());
+    }
+
+    @Test
+    void getBadge() throws FileNotFoundException {
+        File file = new File("src/test/java/net/tylerday/AdventofCode/day03/test.txt");
+        partOne = new PartOne(file);
+
+        char badge = partOne.getBadge(0);
+        assertEquals(badge,'r');
+
+        badge = partOne.getBadge(3);
+        assertEquals(badge,'Z');
+    }
+
+    @Test
+    void calculatePartTwo() throws FileNotFoundException {
+        File file = new File("src/test/java/net/tylerday/AdventofCode/day03/test.txt");
+        partOne = new PartOne(file);
+        int answer = partOne.calculatePartTwo();
+        assertEquals(70, answer);
     }
 }

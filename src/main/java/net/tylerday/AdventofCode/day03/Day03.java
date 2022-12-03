@@ -2,19 +2,24 @@ package net.tylerday.AdventofCode.day03;
 
 import java.io.File;
 import java.io.FileNotFoundException;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class Day03 {
 
     public static void main(String[] args) throws FileNotFoundException {
-        File file = new File("E:\\LocalProgramming\\Advent2022\\src\\main\\java\\net\\tylerday\\AdventofCode\\day03\\input.txt");
+        File file = new File("src/main/java/net/tylerday/AdventofCode/day03/input.txt");
         PartOne partOne = new PartOne(file);
+        System.out.println("Part One");
         System.out.println(partOne.partOneTotal());
+        System.out.println();
+        System.out.println("Part Two");
+        System.out.println(partOne.calculatePartTwo());
+
     }
 
 }
+
 
 class PartOne {
     List<Rucksack> rucksackList = new ArrayList<>();
@@ -42,9 +47,44 @@ class PartOne {
         }
         return total;
     }
+
+    public char getBadge(int position){
+        Set<Character> r1 = rucksackList.get(position).rucksackContents
+                .chars()
+                .mapToObj(e->(char)e).collect(Collectors.toSet());
+        Set<Character> r2 = rucksackList.get(position + 1).rucksackContents
+                .chars()
+                .mapToObj(e->(char)e).collect(Collectors.toSet());
+        Set<Character> r3 = rucksackList.get(position + 2).rucksackContents
+                .chars()
+                .mapToObj(e->(char)e).collect(Collectors.toSet());
+        r1.retainAll(r2);
+        r1.retainAll(r3);
+
+        Character[] common = new Character[r1.size()];
+        common =  r1.toArray(common);
+        return common[0];
+    }
+
+    public int calculatePartTwo(){
+        int totalVal = 0;
+        for (int i = 0; i < rucksackList.size(); i+=3) {
+            char commonLetter = getBadge(i);
+            int val = commonLetter;
+            if(commonLetter < 97){
+                // it is a capital letter
+                val = commonLetter + 32 + 26;
+            }
+            totalVal += val - 96;
+        }
+
+        return totalVal;
+    }
+
 }
 
 class Rucksack {
+    String rucksackContents;
     String compartmentOne;
 
     public String getCompartmentTwo() {
@@ -54,6 +94,7 @@ class Rucksack {
     String compartmentTwo;
 
     public Rucksack(String rucksackContents) {
+        this.rucksackContents = rucksackContents;
         int half = rucksackContents.length() / 2;
         this.compartmentOne = rucksackContents.substring(0, half);
         this.compartmentTwo = rucksackContents.substring(half);
