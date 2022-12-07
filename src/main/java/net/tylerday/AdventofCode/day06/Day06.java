@@ -18,25 +18,25 @@ public class Day06 {
 
 
     public static void main(String[] args) {
-        String testData = "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg";
+        String testData = "mjqjpqmgbljsphdztnvjfqwrcgsmlb";
 
 //        System.out.println(testData.substring(0,4));
 
-        System.out.println(partOne(LocalData.inputData));
+        System.out.println(partOne(LocalData.inputData, 4));
+        System.out.println(partOne(LocalData.inputData, 14));
     }
 
-    public static int partOne(String testData) {
+    public static int partOne(String testData, int position) {
 
         ArrayDeque<Character> chars = new ArrayDeque<>();
-        chars.add(testData.charAt(0));
-        chars.add(testData.charAt(1));
-        chars.add(testData.charAt(2));
-        chars.add(testData.charAt(3));
+        for (int i = 0; i < position; i++) {
+            chars.add(testData.charAt(i));
+        }
 
-        for (int i = 4; i < testData.length(); i++){
+        for (int i = position; i < testData.length(); i++){
             Set<Character> test = new HashSet<>(chars.stream().toList());
-            if(test.size() == 4){
-                System.out.println(chars.toString());
+            if(test.size() == position){
+                System.out.println(chars);
                 return i;
             }
             chars.poll();
