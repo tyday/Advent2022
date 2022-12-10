@@ -8,7 +8,9 @@ import java.util.List;
 public class Day10 {
 
     public static void main(String[] args) throws FileNotFoundException {
-        List <String> data = FileHelper.getData("src/main/java/net/tylerday/AdventofCode/day10/test.txt");
+        List <String> data = FileHelper.getData("src/main/java/net/tylerday/AdventofCode/day10/input.txt");
+
         CPU cpu = new CPU(data);
+        cpu.run();
     }
 }
