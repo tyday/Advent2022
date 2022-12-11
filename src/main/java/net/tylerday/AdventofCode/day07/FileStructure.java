@@ -8,7 +8,7 @@ public class FileStructure {
     List<Node> directories;
 
     public FileStructure() {
-        root = new Node("/", null, 0, NodeType.DIRECTORY);
+        root = new Node("/", null, 0);
         directories = new ArrayList<>();
         directories.add(root);
     }

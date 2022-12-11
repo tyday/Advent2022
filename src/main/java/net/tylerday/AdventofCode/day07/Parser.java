@@ -2,7 +2,7 @@ package net.tylerday.AdventofCode.day07;
 
 public class Parser {
     private State state = State.INPUT;
-    private FileStructure fileStructure;
+    private final FileStructure fileStructure;
 
     private Node currentNode;
 
@@ -40,14 +40,12 @@ public class Parser {
         if(part1.equals("dir")){
             newNode.name = part2;
             newNode.value = 0;
-            newNode.type = NodeType.DIRECTORY;
             newNode.parent = currentNode;
             currentNode.children.add(newNode);
             fileStructure.directories.add(newNode);
         } else {
             newNode.name = part2;
             newNode.value = Integer.parseInt(part1);
-            newNode.type = NodeType.FILE;
             newNode.parent = currentNode;
             currentNode.children.add(newNode);
         }
