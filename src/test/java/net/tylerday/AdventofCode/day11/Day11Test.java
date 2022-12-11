@@ -13,16 +13,6 @@ class Day11Test {
 
     @Test
     void partOne() throws FileNotFoundException {
-        List<String> data = FileHelper.getData("src/test/java/net/tylerday/AdventofCode/day11/test.txt");
-        List<Monkey> monkeys = new ArrayList<>();
 
-        for (int i = 0; i < data.size(); i+=6) {
-            List<String> monkeyData = new ArrayList<>();
-            for (int j = 0; j < 6; j++) {
-                monkeyData.add(data.get(i + j));
-            }
-            monkeys.add(new Monkey(monkeyData));
-        }
-        System.out.println(monkeys);
     }
 }

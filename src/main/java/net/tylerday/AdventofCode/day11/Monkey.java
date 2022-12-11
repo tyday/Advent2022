@@ -1,10 +1,13 @@
 package net.tylerday.AdventofCode.day11;
 
+import java.util.ArrayDeque;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Queue;
 
 public class Monkey {
     int number;
+    int inspections = 0;
     List<Item> itemList = new ArrayList<>();
     MonkeyOperation operation;
     MonkeyTest test;
@@ -35,6 +38,7 @@ public class Monkey {
     }
 
     public Item inspectItem(Item toInspect){
+        inspections += 1;
         int oldVal = toInspect.val;
         int newVal = this.operation.apply(oldVal);
         toInspect.val = newVal;
@@ -43,6 +47,7 @@ public class Monkey {
 
     public Item growBored(Item toInspect){
         toInspect.val = toInspect.val / 3;
+        return  toInspect;
     }
 
     private void modifyTest(boolean b, String verb) {
@@ -66,5 +71,31 @@ public class Monkey {
         for(String item: verb.split(", ")){
             this.itemList.add(new Item(item.trim()));
         }
+    }
+
+    public void doRound(List<Monkey> monkeys, boolean partOne) {
+        Queue<Item> items = new ArrayDeque<>();
+        for (Item item :
+                this.itemList) {
+            items.add(item);
+        }
+        while (!items.isEmpty()){
+            Item item = items.poll();
+            this.inspectItem(item);
+            if (partOne){
+                this.growBored(item);
+            }
+            this.tossItem(item, monkeys);
+        }
+    }
+
+    private void tossItem(Item item, List<Monkey> monkeys) {
+        itemList.remove(item);
+        if(item.val % test.divisibleBy == 0){
+            monkeys.get(test.throwToIfTrue).itemList.add(item);
+        } else {
+            monkeys.get(test.throwToIfFalse).itemList.add(item);
+        }
+
     }
 }
