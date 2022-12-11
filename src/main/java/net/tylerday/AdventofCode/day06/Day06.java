@@ -4,12 +4,12 @@ import java.util.*;
 
 public class Day06 {
 
-    List<String> testData = new ArrayList<>(List.of(
-            "mjqjpqmgbljsphdztnvjfqwrcgsmlb",
-            "nppdvjthqldpwncqszvftbrmjlhg",
-            "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg",
-            "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"
-    ));
+//    List<String> testData = new ArrayList<>(List.of(
+//            "mjqjpqmgbljsphdztnvjfqwrcgsmlb",
+//            "nppdvjthqldpwncqszvftbrmjlhg",
+//            "nznrnfrfntjfmvfwmzdfjlvtqnbhcprsg",
+//            "zcfzfwzzqfrljwzlrfnpqdbhtmscgvjw"
+//    ));
 
 //    String testData1 = "mjqjpqmgbljsphdztnvjfqwrcgsmlb";
 //    String testData2 = "nppdvjthqldpwncqszvftbrmjlhg";
@@ -18,7 +18,7 @@ public class Day06 {
 
 
     public static void main(String[] args) {
-        String testData = "mjqjpqmgbljsphdztnvjfqwrcgsmlb";
+//        String testData = "mjqjpqmgbljsphdztnvjfqwrcgsmlb";
 
 //        System.out.println(testData.substring(0,4));
 

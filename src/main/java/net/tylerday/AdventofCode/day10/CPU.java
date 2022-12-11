@@ -8,9 +8,6 @@ import java.util.Stack;
 public class CPU {
     int registerX = 1;
     int clockCycle = 0;
-    int c1 = 0;
-    int c2 = 0;
-    int total = 1;
     int totalSignalStrength = 0;
 //    List<Integer> interestingCycles = new ArrayList<>(Arrays.asList(20, 60, 100, 140, 180, 220));
     List<Integer> interestingCycles = new ArrayList<>(Arrays.asList(40,80,120,160,200,240));

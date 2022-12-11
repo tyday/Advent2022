@@ -3,7 +3,6 @@ package net.tylerday.AdventofCode.day05;
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.*;
-import java.util.concurrent.Callable;
 
 public class Day05 {
 

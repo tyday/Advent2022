@@ -7,27 +7,15 @@ public class Node {
     String name;
     Node parent;
     int value;
-    NodeType type;
     Stack<Node> children = new Stack<>();
 
     public Node() {
     }
 
-    public Node(String name, int value, NodeType type) {
-        this.name = name;
-        this.value = value;
-        this.type = type;
-    }
-
-    public Node(String name, Node parent, int value, NodeType type) {
+    public Node(String name, Node parent, int value) {
         this.name = name;
         this.parent = parent;
         this.value = value;
-        this.type = type;
-    }
-
-    public void add(Node child) {
-        children.add(child);
     }
 
     int getValue() {
@@ -36,23 +24,6 @@ public class Node {
             total += child.getValue();
         }
         return total;
-    }
-
-    boolean contains(String name){
-        for(Node n : this.children){
-            if(n.name.equals(name)){
-                return true;
-            }
-        }
-        return false;
-    }
-    boolean contains(Node n){
-        for(Node c : this.children){
-            if(n.equals(c)){
-                return true;
-            }
-        }
-        return false;
     }
 
     public Node getChild(String noun) {
