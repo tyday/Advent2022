@@ -14,7 +14,7 @@ public class Day11 {
         System.out.println("Day 11");
 //        List<String> data = FileHelper.getData("src/test/java/net/tylerday/AdventofCode/day11/test.txt");
         List<String> data = FileHelper.getData("src/main/java/net/tylerday/AdventofCode/day11/input.txt");
-        partOne(data);
+//        partOne(data);
 
         partTwo(data);
     }
@@ -29,22 +29,23 @@ public class Day11 {
                 monkeyData.add(data.get(i + j));
             }
             monkeys.add(new Monkey(monkeyData));
+            monkeys.get(monkeys.size() - 1).mod = 3;
         }
         System.out.println(monkeys);
 
         for (int round = 1; round <= 20; round++) {
             for (Monkey monkey :
                     monkeys) {
-                monkey.doRound(monkeys, true);
+                monkey.doRound(monkeys);
             }
         }
         int total = 0;
         List<Integer> inspections = new ArrayList<>();
         for (Monkey monkey :
                 monkeys) {
-            System.out.println("Monkey: " + monkey.number + " inspections: " + monkey.inspections);
             inspections.add(monkey.inspections);
         }
+        printInspections(monkeys);
         inspections = inspections.stream().sorted().collect(Collectors.toList());
         Collections.reverse(inspections);
         System.out.println(inspections);
@@ -61,25 +62,51 @@ public class Day11 {
                 monkeyData.add(data.get(i + j));
             }
             monkeys.add(new Monkey(monkeyData));
+//            monkeys.get(monkeys.size() - 1).mod = 3;
         }
-        System.out.println(monkeys);
+        long mod = 1l;
+        for (Monkey monkey:
+             monkeys) {
+            mod *= monkey.test.divisibleBy;
+        }
+        for (Monkey monkey:
+                monkeys) {
+            monkey.mod = (int)mod;
+        }
+        System.out.println("mod " + monkeys.get(1).mod);
 
         for (int round = 1; round <= 10000; round++) {
             for (Monkey monkey :
                     monkeys) {
-                monkey.doRound(monkeys, false);
+                monkey.doRound(monkeys);
             }
+//            if(round==1 || round == 20 || round % 1000 == 0){
+//                System.out.printf("== After round %s ==\n", round);
+//                printInspections(monkeys);
+//                System.out.println();
+//            }
         }
 
         List<Integer> inspections = new ArrayList<>();
         for (Monkey monkey :
                 monkeys) {
-            System.out.println("Monkey: " + monkey.number + " inspections: " + monkey.inspections);
             inspections.add(monkey.inspections);
         }
+
+        printInspections(monkeys);
         inspections = inspections.stream().sorted().collect(Collectors.toList());
         Collections.reverse(inspections);
         System.out.println(inspections);
-        System.out.println(inspections.get(0) * inspections.get(1));
+        System.out.println((long)inspections.get(0) * inspections.get(1));
+    }
+
+    private static void printInspections(List<Monkey> monkeys) {
+        int sum = 0;
+        for (Monkey monkey :
+                monkeys) {
+            sum += monkey.inspections;
+            System.out.println("Monkey: " + monkey.number + " inspections: " + monkey.inspections);
+        }
+        System.out.println("Sum: " + sum);
     }
 }

@@ -7,6 +7,7 @@ import java.util.Queue;
 
 public class Monkey {
     int number;
+    int mod = 96577;
     int inspections = 0;
     List<Item> itemList = new ArrayList<>();
     MonkeyOperation operation;
@@ -39,14 +40,18 @@ public class Monkey {
 
     public Item inspectItem(Item toInspect){
         inspections += 1;
-        int oldVal = toInspect.val;
-        int newVal = this.operation.apply(oldVal);
+        long oldVal = toInspect.val;
+        long newVal = this.operation.apply(oldVal);
         toInspect.val = newVal;
         return  toInspect;
     }
 
     public Item growBored(Item toInspect){
-        toInspect.val = toInspect.val / 3;
+        if(mod==3){
+            toInspect.val = toInspect.val / mod;
+        } else {
+            toInspect.val = toInspect.val % mod;
+        }
         return  toInspect;
     }
 
@@ -73,7 +78,7 @@ public class Monkey {
         }
     }
 
-    public void doRound(List<Monkey> monkeys, boolean partOne) {
+    public void doRound(List<Monkey> monkeys) {
         Queue<Item> items = new ArrayDeque<>();
         for (Item item :
                 this.itemList) {
@@ -82,9 +87,7 @@ public class Monkey {
         while (!items.isEmpty()){
             Item item = items.poll();
             this.inspectItem(item);
-            if (partOne){
-                this.growBored(item);
-            }
+            this.growBored(item);
             this.tossItem(item, monkeys);
         }
     }
